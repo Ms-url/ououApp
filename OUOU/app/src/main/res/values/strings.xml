@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">欧欧</string>
+    <string name="welcome_text">欢迎来到欧欧</string>
+    <string name="log_in_button">登录</string>
+    <string name="account_hint">账号</string>
+    <string name="password_hint">密码</string>
+    <string name="repassword_hint">确认密码</string>
+    <string name="register_button">注册</string>
+    <string name="log_in_page_title">登录</string>
+    <string name="register_page_title">注册</string>
+    <string name="visitor_log_in">游客进入</string>
+    <string name="way_of_log">—— 其他方式登录 ——</string>
+    <string name="title_activity_main2">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="hello_blank_fragment">fragment</string>
+
+</resources>

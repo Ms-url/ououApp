@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TabTextStyle">
+        <item name="android:textSize">@dimen/textSize</item>
+
+    </style>
+    <dimen name="textSize">12sp</dimen>
+    <dimen name="article_item_title">20sp</dimen>
+
+</resources>
