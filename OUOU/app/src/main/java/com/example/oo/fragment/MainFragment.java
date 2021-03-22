@@ -19,7 +19,7 @@ import android.widget.Toast;
 import com.example.oo.R;
 import com.example.oo.adapter.MainAdapter;
 import com.example.oo.util.GlobalData;
-import com.example.oo.util.GETConnection;
+import com.example.oo.util.HttpUtil;
 import com.example.oo.util.JsonAnalyze;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.youth.banner.Banner;
@@ -37,7 +37,7 @@ public class MainFragment extends Fragment {
     List<String> list_path = new ArrayList<>();
     JsonAnalyze jsonAnalyze = new JsonAnalyze();
     MainAdapter mainAdapter = new MainAdapter(list, list_path);
-    GETConnection getConnection = new GETConnection();
+    HttpUtil getConnection = new HttpUtil();
     private String responseData;
 
     private Handler handler = new Handler() {
@@ -91,7 +91,7 @@ public class MainFragment extends Fragment {
         });
 
         new Thread(() -> {
-      /*    responseData = getConnection.sendGetNetRequest("  ", cook);
+      /*    responseData = getConnection.sendGetRequest("  ", cook);
             if (responseData.equals("1")) {
                 showResponse(2);
             } else {

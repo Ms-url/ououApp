@@ -24,7 +24,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.oo.R;
-import com.example.oo.util.POSTConnection_3;
+import com.example.oo.util.GlobalData;
+import com.example.oo.util.HttpUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,8 +45,7 @@ public class LogInActivity extends AppCompatActivity {
     TextView textView;
     TextView textView_visitor_log;
     TextView textView_way_of_log;
-    // private POST_Connection post_connection = new POST_Connection();
-    private POSTConnection_3 post_connection = new POSTConnection_3();
+    private HttpUtil post_connection = new HttpUtil();
     private static int i = 2;
 
     private String responseData="1";//待修改
@@ -87,9 +87,9 @@ public class LogInActivity extends AppCompatActivity {
         SharedPreferences.Editor cookie_data = getSharedPreferences("cook_data", MODE_PRIVATE).edit();
         SharedPreferences save_da = getSharedPreferences("cook_data", MODE_PRIVATE);
         String u = save_da.getString("cookie", "");
-
         if (!TextUtils.isEmpty(u)) {
             Intent intent = new Intent(LogInActivity.this, MainActivity.class);
+            GlobalData.sessionId=u;
             startActivity(intent);
         }
 
@@ -147,21 +147,18 @@ public class LogInActivity extends AppCompatActivity {
 
                     new Thread(() -> {
                         try {
-                            Thread.sleep(1200);
+                            Thread.sleep(1000);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        List<String> list = new ArrayList<>();
-        //                list = post_connection.sendGetNetRequest("      ", map);
-        //                responseData = list.get(0);
+         //             responseData = post_connection.sendPostRequest("      ", map);
                         Log.e("联接response", responseData);
                         try {
                             if (responseData.equals("1")) {
                                 progressDialog.dismiss();
                                 showResponse("请求超时", 2);
                             } else {
-                                String cook = list.get(1);
-                                cookie_data.putString("cookie", cook);
+                                cookie_data.putString("cookie",GlobalData.sessionId);
                                 cookie_data.apply();
                                 JSONObject jsonObject = new JSONObject(responseData);
                                 int jsonerrorCode = jsonObject.getInt("errorCode");

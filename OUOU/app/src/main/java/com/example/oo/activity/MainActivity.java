@@ -2,6 +2,7 @@ package com.example.oo.activity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -64,6 +65,14 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                ActionBar actionBar = getSupportActionBar();
+                if (tab.getText().equals("天气")) {
+                    if (actionBar != null) {
+                        actionBar.hide();
+                    }
+                } else {
+                    actionBar.show();
+                }
             }
 
             @Override

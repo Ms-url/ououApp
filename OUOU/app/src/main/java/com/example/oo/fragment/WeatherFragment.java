@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.oo.R;
 import com.example.oo.util.GlobalData;
-import com.example.oo.util.GETConnection;
+import com.example.oo.util.HttpUtil;
 import com.example.oo.util.JsonAnalyze;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class WeatherFragment extends Fragment {
     View view;
     List<GlobalData> list = new ArrayList<>();
     JsonAnalyze jsonAnalyze = new JsonAnalyze();
-    GETConnection getConnection = new GETConnection();
+    HttpUtil getConnection = new HttpUtil();
     private String responseData;
     String location=null;
 
@@ -50,7 +50,7 @@ public class WeatherFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_weather, container, false);
 
         new Thread(() -> {
-            responseData = getConnection.sendGetNetRequest("https://devapi.qweather.com/v7/weather/now"+location+"&key=2c3d6a1953cd43ccb16e6f72ef24c6c2");
+            responseData = getConnection.sendGetRequest("https://devapi.qweather.com/v7/weather/now"+location+"&key=2c3d6a1953cd43ccb16e6f72ef24c6c2");
             if (responseData.equals("1")) {
                 showResponse(2);
             } else {

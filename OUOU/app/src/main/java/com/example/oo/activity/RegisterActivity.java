@@ -21,7 +21,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.oo.R;
-import com.example.oo.util.POSTConnection;
+import com.example.oo.util.HttpUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,10 +39,9 @@ public class RegisterActivity extends AppCompatActivity {
     private ImageView user_accont;
     private ImageView imageView_eye_password;
     private ImageView imageView_eye_repassword;
-    private POSTConnection post_connection = new POSTConnection();
+    private HttpUtil post_connection = new HttpUtil();
     private static int i = 2;
     private static int ii = 2;
-
 
     private String responseData = "1";
 
@@ -191,7 +190,7 @@ public class RegisterActivity extends AppCompatActivity {
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                  //      responseData = post_connection.sendGetNetRequest("     ", map);
+                  //    responseData = post_connection.sendGetRequest("     ", map);
                         Log.e("返回值", responseData);
                         try {
                             if (responseData.equals("1")) {

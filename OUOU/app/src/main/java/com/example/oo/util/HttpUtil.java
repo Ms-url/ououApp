@@ -27,7 +27,7 @@ public class HttpUtil {
         this.responseData = responseData;
     }
 
-    public String setGetRequest(String murl,String cook) {
+    public String sendGetRequest(String murl) {
         HttpUtil get_connection = new HttpUtil();
         try {
             URL url = new URL(murl);
@@ -36,7 +36,7 @@ public class HttpUtil {
             connection.setConnectTimeout(5000);
             connection.setReadTimeout(5000);
 
-            connection.setRequestProperty("cookie",cook);
+            connection.setRequestProperty("cookie",GlobalData.sessionId);
 
             connection.connect();
             InputStream in = connection.getInputStream();
@@ -59,8 +59,8 @@ public class HttpUtil {
     }
 
 
-    private String cookie="";
-    public List<String> setPostRequest(String murl, HashMap<String, String> params,String cook) {
+
+    public String sendPostRequest(String murl, HashMap<String, String> params) {
         HttpUtil post_connection = new HttpUtil();
         HttpURLConnection connection=null;
         try {
@@ -72,7 +72,7 @@ public class HttpUtil {
             connection.setDoOutput(true);
             connection.setDoInput(true);
 
-            connection.setRequestProperty("cookie",cook);
+            connection.setRequestProperty("cookie",GlobalData.sessionId);
 
             StringBuilder dataTowrite = new StringBuilder();
             for (String key : params.keySet()) {
@@ -101,7 +101,7 @@ public class HttpUtil {
         String finally_responseData = post_connection.getResponseData();
 
         List<String> list = new ArrayList<>();
-
+        String cookie="";
         Map<String, List<String>> cookies_t2 = connection.getHeaderFields();
         List<String> cookie_t2 = cookies_t2.get("Set-Cookie");
         for (int i = 0; i < cookie_t2.size(); i++) {
@@ -113,10 +113,8 @@ public class HttpUtil {
             Log.e("cook",cookie);
         }
 
-        List<String> list_re = new ArrayList<>();
-        list_re.add(finally_responseData);
-        list_re.add(cookie);
-        return list_re;
+        GlobalData.sessionId=cookie;
+        return finally_responseData;
     }
 
     private String StreamToString(InputStream in) {
