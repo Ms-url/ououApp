@@ -1,7 +1,6 @@
 package com.example.oo.adapter;
 
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,19 +11,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.oo.R;
-import com.example.oo.util.Data;
+import com.example.oo.util.GlobalData;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.loader.ImageLoader;
 
-import java.util.Collections;
 import java.util.List;
 
 
 public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private LayoutInflater mlayoutInflater;
     private Context mcontext;
-    private List<Data> mdata;
+    private List<GlobalData> mdata;
     private List<String> mpath;
 
     private final static int ITEM_HEADER = 0;
@@ -56,7 +54,7 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
 
-    public MainAdapter(List<Data> mdata, List<String> mpath) {
+    public MainAdapter(List<GlobalData> mdata, List<String> mpath) {
         this.mdata = mdata;
         this.mpath = mpath;
     }

@@ -17,9 +17,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.oo.R;
-import com.example.oo.adapter.CommonsAdapter;
 import com.example.oo.adapter.MainAdapter;
-import com.example.oo.util.Data;
+import com.example.oo.util.GlobalData;
 import com.example.oo.util.GETConnection;
 import com.example.oo.util.JsonAnalyze;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -34,7 +33,7 @@ public class MainFragment extends Fragment {
     private RecyclerView recyclerView;
     private FloatingActionButton fab;
     Banner banner;
-    List<Data> list = new ArrayList<>();
+    List<GlobalData> list = new ArrayList<>();
     List<String> list_path = new ArrayList<>();
     JsonAnalyze jsonAnalyze = new JsonAnalyze();
     MainAdapter mainAdapter = new MainAdapter(list, list_path);
@@ -114,8 +113,8 @@ public class MainFragment extends Fragment {
                 jsonAnalyze.JsonDataGet_(responseData, list);
                 showResponse(1);
             }*/
-            list.add(new Data());
-            list.add(new Data());
+            list.add(new GlobalData());
+            list.add(new GlobalData());
             list_path.add("https://www.wanandroid.com/blogimgs/50c115c2-cf6c-4802-aa7b-a4334de444cd.png");
             list_path.add("https://www.wanandroid.com/blogimgs/50c115c2-cf6c-4802-aa7b-a4334de444cd.png");
             showResponse(1);

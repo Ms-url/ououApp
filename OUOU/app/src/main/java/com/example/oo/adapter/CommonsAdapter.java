@@ -8,15 +8,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.oo.util.Data;
+import com.example.oo.util.GlobalData;
 import com.example.oo.R;
-import com.youth.banner.Banner;
 
 import java.util.List;
 
 
 public class CommonsAdapter extends RecyclerView.Adapter<CommonsAdapter.ViewHolder> {
-    private List<Data> mdata;
+    private List<GlobalData> mdata;
     private Context mcontext;
 
 
@@ -26,7 +25,7 @@ public class CommonsAdapter extends RecyclerView.Adapter<CommonsAdapter.ViewHold
         }
     }
 
-    public CommonsAdapter(List<Data> mdata) {
+    public CommonsAdapter(List<GlobalData> mdata) {
         this.mdata = mdata;
     }
 

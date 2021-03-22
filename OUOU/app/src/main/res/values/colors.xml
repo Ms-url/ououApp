@@ -26,4 +26,5 @@
     <color name="green">#008805</color>
     <color name="blue">#1279CC</color>
     <color name="blue_2">#2889D6</color>
+    <color name="temperature_background">#52656E</color>
 </resources>
