@@ -32,7 +32,7 @@ public class CommonsAdapter extends RecyclerView.Adapter<CommonsAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_item_main, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_item_body, parent, false);
         final ViewHolder holder = new ViewHolder(view);
         if (mcontext == null) {
             mcontext = parent.getContext();

@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.oo.R;
 import com.example.oo.util.GlobalData;
@@ -25,11 +27,14 @@ public class WeatherFragment extends Fragment {
     HttpUtil getConnection = new HttpUtil();
     private String responseData;
     String location=null;
+    TextView textView;
 
     private Handler handler = new Handler() {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 1:
+   //                 textView.setText(responseData);
+                    Log.e("show","show");
                     break;
                 case 2:
 
@@ -48,9 +53,11 @@ public class WeatherFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_weather, container, false);
+     //   view = inflater.inflate(R.layout.text, container, false);
+     //   textView = view.findViewById(R.id.text_text_k);
 
         new Thread(() -> {
-            responseData = getConnection.sendGetRequest("https://devapi.qweather.com/v7/weather/now"+location+"&key=2c3d6a1953cd43ccb16e6f72ef24c6c2");
+            responseData = getConnection.sendGetRequest("https://devapi.qweather.com/v7/weather/now?location=101040100&key=2c3d6a1953cd43ccb16e6f72ef24c6c2");
             if (responseData.equals("1")) {
                 showResponse(2);
             } else {
@@ -58,6 +65,7 @@ public class WeatherFragment extends Fragment {
                 showResponse(1);
             }
         }).start();
+
 
         return view;
     }

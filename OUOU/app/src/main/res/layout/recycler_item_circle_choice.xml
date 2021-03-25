@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="156dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24sp"
+        android:textColor="@color/black"
+        android:text="分类"/>
+    <LinearLayout
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="12sp"
+        android:layout_marginRight="12sp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:layout_marginLeft="26sp"
+            android:id="@+id/bt_ball1"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:background="@drawable/circle"
+            android:layout_height="match_parent"/>
+        <ImageButton
+            android:id="@+id/bt_ball2"
+            android:layout_weight="1"
+            android:layout_marginRight="38sp"
+            android:layout_marginLeft="38sp"
+            android:layout_width="0dp"
+            android:background="@drawable/circle"
+            android:layout_height="match_parent"/>
+        <ImageButton
+            android:id="@+id/bt_ball3"
+            android:layout_weight="1"
+            android:layout_marginRight="38sp"
+            android:layout_width="0dp"
+            android:background="@drawable/circle"
+            android:layout_height="match_parent"/>
+        <ImageButton
+            android:id="@+id/bt_ball4"
+            android:layout_marginRight="26sp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:background="@drawable/circle"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="12sp"
+        android:layout_marginRight="12sp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:layout_marginLeft="26sp"
+            android:id="@+id/bt_ball5"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:background="@drawable/circle"
+            android:layout_height="match_parent"/>
+        <ImageButton
+            android:id="@+id/bt_ball6"
+            android:layout_weight="1"
+            android:layout_marginRight="38sp"
+            android:layout_marginLeft="38sp"
+            android:layout_width="0dp"
+            android:background="@drawable/circle"
+            android:layout_height="match_parent"/>
+        <ImageButton
+            android:id="@+id/bt_ball7"
+            android:layout_weight="1"
+            android:layout_marginRight="38sp"
+            android:layout_width="0dp"
+            android:background="@drawable/circle"
+            android:layout_height="match_parent"/>
+        <ImageButton
+            android:id="@+id/bt_ball8"
+            android:layout_marginRight="26sp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:src="@android:drawable/ic_menu_send"
+            android:background="@drawable/circle"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+    <TextView
+        android:layout_marginLeft="24sp"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="最新"/>
+</LinearLayout>
