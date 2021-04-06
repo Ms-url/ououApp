@@ -16,6 +16,7 @@ import com.example.oo.R;
 import com.example.oo.util.GlobalData;
 import com.example.oo.util.HttpUtil;
 import com.example.oo.util.JsonAnalyze;
+import com.example.oo.util.ThreadPoolManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,7 @@ public class WeatherFragment extends Fragment {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 1:
-   //                 textView.setText(responseData);
+   //               textView.setText(responseData);
                     Log.e("show","show");
                     break;
                 case 2:
@@ -53,19 +54,22 @@ public class WeatherFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_weather, container, false);
-     //   view = inflater.inflate(R.layout.text, container, false);
-     //   textView = view.findViewById(R.id.text_text_k);
+     //  view = inflater.inflate(R.layout.text, container, false);
+     //  textView = view.findViewById(R.id.text_text_k);
 
-        new Thread(() -> {
-            responseData = getConnection.sendGetRequest("https://devapi.qweather.com/v7/weather/now?location=101040100&key=2c3d6a1953cd43ccb16e6f72ef24c6c2");
-            if (responseData.equals("1")) {
-                showResponse(2);
-            } else {
-              //jsonAnalyze.JsonDataGet_(responseData, list);
-                showResponse(1);
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                responseData = getConnection.sendGetRequest("https://devapi.qweather.com/v7/weather/now?location=101040100&key=2c3d6a1953cd43ccb16e6f72ef24c6c2");
+                if (responseData.equals("1")) {
+                    showResponse(2);
+                } else {
+                    //jsonAnalyze.JsonDataGet_(responseData, list);
+                    showResponse(1);
+                }
             }
-        }).start();
-
+        };
+        ThreadPoolManager.getInstance().execute(runnable);
 
         return view;
     }

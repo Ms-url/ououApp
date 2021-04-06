@@ -21,11 +21,14 @@ import com.example.oo.adapter.MainAdapter;
 import com.example.oo.util.GlobalData;
 import com.example.oo.util.HttpUtil;
 import com.example.oo.util.JsonAnalyze;
+import com.example.oo.util.MySQLiteOpenHelper;
+import com.example.oo.util.ThreadPoolManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.youth.banner.Banner;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadPoolExecutor;
 
 public class MainFragment extends Fragment {
     View view;
@@ -39,6 +42,7 @@ public class MainFragment extends Fragment {
     MainAdapter mainAdapter = new MainAdapter(list, list_path);
     HttpUtil getConnection = new HttpUtil();
     private String responseData;
+    private MySQLiteOpenHelper mySQLiteOpenHelper;
 
     private Handler handler = new Handler() {
         public void handleMessage(Message msg) {
@@ -76,6 +80,9 @@ public class MainFragment extends Fragment {
         fab = view.findViewById(R.id.fab_add);
         banner = view.findViewById(R.id.main_banner);
 
+        mySQLiteOpenHelper = new MySQLiteOpenHelper(getContext(),"Cities.db",null,1);
+        mySQLiteOpenHelper.getWritableDatabase();
+
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -90,35 +97,48 @@ public class MainFragment extends Fragment {
             }
         });
 
-        new Thread(() -> {
-      /*    responseData = getConnection.sendGetRequest("  ", cook);
+        list.add(new GlobalData());
+        list.add(new GlobalData());
+        list.add(new GlobalData());
+        list_path.add("https://www.wanandroid.com/blogimgs/50c115c2-cf6c-4802-aa7b-a4334de444cd.png");
+        showResponse(1);
+        
+       Runnable runnable = new Runnable() {
+           @Override
+           public void run() {
+          /*     responseData = getConnection.sendGetRequest("  ", cook);
             if (responseData.equals("1")) {
                 showResponse(2);
             } else {
                 jsonAnalyze.JsonDataGet_(responseData, list);
                 showResponse(1);
             } */
-        }).start();
-
+           }
+       };
+       ThreadPoolManager.getInstance().execute(runnable);
         return view;
     }
 
     private void refresh() {
-        new Thread(() -> {
-
-      /*    responseData = getConnection.sendGetNetRequest("  ", cook);
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                /*    responseData = getConnection.sendGetNetRequest("  ", cook);
             if (responseData.equals("1")) {
                 showResponse(2);
             } else {
                 jsonAnalyze.JsonDataGet_(responseData, list);
                 showResponse(1);
             }*/
-            list.add(new GlobalData());
-            list.add(new GlobalData());
-            list_path.add("https://www.wanandroid.com/blogimgs/50c115c2-cf6c-4802-aa7b-a4334de444cd.png");
-            list_path.add("https://www.wanandroid.com/blogimgs/50c115c2-cf6c-4802-aa7b-a4334de444cd.png");
-            showResponse(1);
-        }).start();
+                list.add(new GlobalData());
+                list.add(new GlobalData());
+                list_path.add("https://www.wanandroid.com/blogimgs/50c115c2-cf6c-4802-aa7b-a4334de444cd.png");
+                list_path.add("https://www.wanandroid.com/blogimgs/50c115c2-cf6c-4802-aa7b-a4334de444cd.png");
+                showResponse(1);
+            }
+        };
+        ThreadPoolManager.getInstance().execute(runnable);
+
     }
 
     private void showResponse(int num) {
